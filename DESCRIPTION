@@ -1,0 +1,29 @@
+Package: BBMBC
+Title: Beta-Binomial Models for Vaccine-Specific Memory B Cell
+        Frequency and Power Calculations
+Version: 0.1.0
+Authors@R: 
+    person("Andrew", "Shin", , "ashin2@uw.edu", role = c("aut", "cre"))
+Description: Provides tools to model overdispersed vaccine-specific memory B cell frequencies using 
+    Beta-Binomial generalized linear models, specifically designed for 
+    analyzing vaccine-induced cellular immune responses. Includes 
+    method-of-moments dispersion estimation, likelihood ratio testing 
+    across experimental arms, and Monte Carlo simulation frameworks to 
+    calculate statistical power and Type I error rates. The methodologies 
+    are directly motivated by the analysis of immunology data in 
+    'Vaccination with mRNA-encoded membrane-anchored HIV envelope trimers 
+    elicited tier 2 neutralizing antibodies in a phase 1 clinical trial' 
+    (Parks et al. 2025) <doi:10.1126/scitranslmed.ady6831>.
+Encoding: UTF-8
+Depends: R (>= 4.1.0)
+Imports: doParallel, foreach, glmmTMB, parallel, stats, utils
+Suggests: testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Config/roxygen2/version: 8.0.0
+License: MIT + file LICENSE
+NeedsCompilation: no
+Packaged: 2026-09-26 17:13:47 UTC; andrewshin
+Author: Andrew Shin [aut, cre]
+Maintainer: Andrew Shin <ashin2@uw.edu>
+Repository: CRAN
+Date/Publication: 2026-10-07 08:10:20 UTC
