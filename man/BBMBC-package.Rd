@@ -4,9 +4,9 @@
 \name{BBMBC-package}
 \alias{BBMBC}
 \alias{BBMBC-package}
-\title{BBMBC: Beta-Binomial Models for Vaccine-Specific Memory B Cell Frequency and Power Calculations}
+\title{BBMBC: Beta-Binomial Models for Evaluating Overdispersed B-cell Phenotyping Data}
 \description{
-Provides tools to model overdispersed vaccine-specific memory B cell frequencies using Beta-Binomial generalized linear models, specifically designed for analyzing vaccine-induced cellular immune responses. Includes method-of-moments dispersion estimation, likelihood ratio testing across experimental arms, and Monte Carlo simulation frameworks to calculate statistical power and Type I error rates. The methodologies are directly motivated by the analysis of immunology data in 'Vaccination with mRNA-encoded membrane-anchored HIV envelope trimers elicited tier 2 neutralizing antibodies in a phase 1 clinical trial' (Parks et al. 2025) \doi{10.1126/scitranslmed.ady6831}.
+Provides tools for statistical power calculations to plan early-phase vaccine and immunotherapy trials comparing rare, antigen-specific immune cell frequencies. Originally designed for memory B-cell phenotyping studies and generalizable to high-parameter flow cytometry assays across vaccinology and immuno-oncology, the models overdispersed count distributions using Beta-Binomial generalized linear models. Unlike rank-based tests, this approach retains response magnitude information while accounting for extra-binomial variation, small sample sizes, unequal between-participant variability, and uncertainty in pilot estimates. Includes method-of-moments dispersion estimation, likelihood ratio testing across experimental arms, and Monte Carlo simulation to evaluate statistical power with well-controlled empirical Type I error rates. This workflow is directly motivated by the analysis of immunology data in "Vaccination with mRNA-encoded membrane-anchored HIV envelope trimers elicited tier 2 neutralizing antibodies in a phase 1 clinical trial" (Parks et al. 2025) \doi{10.1126/scitranslmed.ady6831}.
 }
 \author{
 \strong{Maintainer}: Andrew Shin \email{ashin2@uw.edu}

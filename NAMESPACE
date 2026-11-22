@@ -5,20 +5,28 @@ export(calc_rho_mom)
 export(calc_t1_bb)
 export(test_diff_bb)
 importFrom(doParallel,registerDoParallel)
-importFrom(foreach,"%dopar%")
-importFrom(foreach,foreach)
-importFrom(glmmTMB,betabinomial)
-importFrom(glmmTMB,fixef)
-importFrom(glmmTMB,glmmTMB)
-importFrom(parallel,clusterSetRNGStream)
-importFrom(parallel,detectCores)
-importFrom(parallel,makeCluster)
-importFrom(parallel,stopCluster)
-importFrom(stats,anova)
-importFrom(stats,na.omit)
-importFrom(stats,rbeta)
-importFrom(stats,rbinom)
-importFrom(stats,runif)
-importFrom(stats,var)
-importFrom(stats,vcov)
+importFrom(foreach,
+  "%dopar%",
+  foreach
+)
+importFrom(glmmTMB,
+  betabinomial,
+  fixef,
+  glmmTMB
+)
+importFrom(parallel,
+  clusterSetRNGStream,
+  detectCores,
+  makeCluster,
+  stopCluster
+)
+importFrom(stats,
+  anova,
+  na.omit,
+  rbeta,
+  rbinom,
+  runif,
+  var,
+  vcov
+)
 importFrom(utils,globalVariables)

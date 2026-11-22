@@ -52,13 +52,44 @@ Handles balanced/unbalanced sample sizes and dynamic overdispersion.
 }
 \examples{
 \donttest{
-# Run small simulation example
-res <- calc_t1_bb(
-  n_0 = 10, n_1 = 10,
-  rho_0 = 0.006, rho_1 = 0.006,
+# 1. Early-phase vaccine trial with balanced arms and equal overdispersion
+# Check empirical Type I error for comparing rare antigen-specific memory
+# B cells (0.5\% baseline frequency, 100k-1M total B cells per sample) across
+# 15 participants per arm. Increase n_sims (e.g., 1000+) for study planning.
+
+res_equal <- calc_t1_bb(
+  n_0 = 15,
+  n_1 = 15,
+  p_base = 0.005,
+  rho_0 = 0.006,
+  rho_1 = 0.006,
+  min_cells = 1e5,
+  max_cells = 1e6,
+  alpha = 0.05,
   n_sims = 10,
   n_cores = 1
 )
-print(res$type_1_error_rate)
+
+# Inspect the empirical Type I error rate and model convergence
+res_equal$type_1_error_rate
+res_equal$convergences
+res_equal$failed_fits
+
+# 2. Unbalanced design (1:2 randomization) with unequal arm variability
+# Specifying rho_0 != rho_1 automatically fits a group-specific dispersion
+# model (dispformula = ~ group).
+res_unequal <- calc_t1_bb(
+  n_0 = 10,
+  n_1 = 20,
+  p_base = 0.005,
+  rho_0 = 0.004,
+  rho_1 = 0.012,
+  alpha = 0.05,
+  n_sims = 10,
+  n_cores = 1
+)
+
+res_unequal$type_1_error_rate
+res_unequal$parameters$model_dispformula
 }
 }

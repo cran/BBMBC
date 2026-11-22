@@ -28,31 +28,49 @@
 #'
 #' @examples
 #' \donttest{
-#' # Evaluate statistical power across a range of sample sizes
+#' # 1. Sample size planning for an early-phase vaccine trial
+#' # Estimate power to detect a 2-fold increase in rare antigen-specific
+#' # memory B cells (0.5% baseline vs. 1.0% treatment) across candidate arm
+#' # sizes. Increase n_sims (e.g., 1000+) for formal study planning.
 #' sample_sizes <- c(10, 15, 20, 25)
-#' power_results <- numeric(length(sample_sizes))
-#' names(power_results) <- paste0("N=", sample_sizes, "/arm")
+#'
+#' power_table <- data.frame(
+#'   n_per_arm = sample_sizes,
+#'   total_n = sample_sizes * 2,
+#'   power = NA_real_
+#' )
 #'
 #' for (i in seq_along(sample_sizes)) {
 #'   n <- sample_sizes[i]
-#'
-#'   # Run simulation for the current sample size
-#'   # Note: n_sims = 100 is used here for demonstration speed.
-#'   # For formal analysis, use n_sims = 1000 or higher.
 #'   pwr_res <- calc_power_bb(
-#'     n_0 = n, n_1 = n,
+#'     n_0 = n,
+#'     n_1 = n,
 #'     p_base = 0.005,
 #'     fold_change = 2.0,
-#'     rho_0 = 0.006, rho_1 = 0.006,
-#'     n_sims = 100,
+#'     rho_0 = 0.006,
+#'     rho_1 = 0.006,
+#'     n_sims = 10,
 #'     n_cores = 1
 #'   )
-#'
-#'   power_results[i] <- pwr_res$power
+#'   power_table$power[i] <- pwr_res$power
 #' }
 #'
-#' # Print the resulting power curve estimates
-#' print(power_results)
+#' # Inspect the power curve and find arm sizes meeting an 80% power target
+#' print(power_table)
+#' power_table[power_table$power >= 0.80, ]
+#'
+#' # 2. Unbalanced randomization (1:2) with unequal between-arm dispersion
+#' pwr_unbalanced <- calc_power_bb(
+#'   n_0 = 10,
+#'   n_1 = 20,
+#'   p_base = 0.005,
+#'   fold_change = 2.0,
+#'   rho_0 = 0.004,
+#'   rho_1 = 0.012,
+#'   n_sims = 10,
+#'   n_cores = 1
+#' )
+#' pwr_unbalanced$power
 #' }
 calc_power_bb <- function(n_0 = 20,
                           n_1 = 20,
